@@ -9,18 +9,17 @@ use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class JWTMiddleware
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-
         if (is_null($request->bearerToken())) {
             return response()->json(['error' => 'Token required.'], 401);
         }
@@ -43,6 +42,10 @@ class JWTMiddleware
 
             return response()->json(['token_absent' => $e->getMessage()], 401);
 
+        }
+
+        if(!JWTAuth::payload()->get("is_admin")) {
+            return response()->json(['error' => 'User is not admin']);
         }
 
 

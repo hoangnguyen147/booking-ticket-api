@@ -20,7 +20,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function login(LoginRequest $request)
+    public function userLogin(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
 
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
             // JWTAuth::factory()->setTTL(40320); // Expired Time 28days
 
-            if (! $token = JWTAuth::attempt($credentials, ['exp' => Carbon::now()->addDays(28)->timestamp])) {
+            if (! $token = JWTAuth::claims(['is_admin' => false])->attempt($credentials, ['exp' => Carbon::now()->addDays(28)->timestamp])) {
 
                 return response()->json(['error' => 'invalid_credentials'], 401);
 
