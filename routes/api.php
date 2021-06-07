@@ -56,10 +56,10 @@ Route::prefix('v1')->group(function () {
         });
     });
 
-    Route::group(['middleware' => ['admin', 'jwt.auth'], 'prefix' => 'admin'], function () {
-        
+    Route::group([['namespace' => 'Film', 'prefix' => 'film']], function () {
+        Route::get('film', ['as' => 'film', 'uses' => 'FilmController@show']);
+        Route::post('film', ['as' => 'film', 'middleware' => ['admin'], 'uses' => 'FilmController@store']);
     });
-
 });
 
 
