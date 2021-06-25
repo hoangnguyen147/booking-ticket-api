@@ -29,6 +29,8 @@ class JWTMiddleware
             // attempt to verify the credentials and create a token for the user
             $token = JWTAuth::getToken();
             $apy = JWTAuth::getPayload($token)->toArray();
+
+            dd($apy);
             
             
         } catch (TokenExpiredException $e) {

@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::prefix('v1')->group(function () {
     Route::group(['namespace' => 'Auth'], function () {
 
-        Route::post('auth/login', ['as' => 'login', 'uses' => 'AuthController@userLogin']);
+        Route::post('auth/login', ['as' => 'login', 'uses' => 'AuthController@login']);
     
         Route::post('auth/register', ['as' => 'register', 'uses' => 'RegisterController@register']);
         // Send reset password mail

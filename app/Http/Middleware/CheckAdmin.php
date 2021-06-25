@@ -30,6 +30,7 @@ class CheckAdmin
             $apy = JWTAuth::getPayload($token)->toArray();
             
             
+            
         } catch (TokenExpiredException $e) {
 
             return response()->json(['error' => 'Session Expired.', 'status_code' => 401], 401);
