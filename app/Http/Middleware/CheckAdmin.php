@@ -45,7 +45,7 @@ class CheckAdmin
 
         }
 
-        if(!JWTAuth::payload()->get("is_admin")) {
+        if(JWTAuth::payload()->get("role") != "admin") {
             return response()->json(['error' => 'User is not admin']);
         }
 
