@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SuatChieu;
 
-class Film extends Model
+class Ticket extends Model
 {
+    //
+
     public function suatChieu() {
-        return hasMany(SuatChieu::class);
+        return $this->belongsTo(SuatChieu::class, 'suatchieu_id', 'id');
     }
+
+    
 }

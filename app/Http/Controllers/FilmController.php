@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class FilmController extends Controller
 {
+    use FileUploadTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return Film::all();
     }
 
     /**
