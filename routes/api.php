@@ -24,10 +24,10 @@ Route::get('/', function () {
 
 
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1', ['middleware' => ['cors']])->group(function () {
     Route::group(['namespace' => 'Auth'], function () {
 
-        Route::post('auth/login', ['as' => 'login', 'uses' => 'AuthController@login']);
+        Route::post('auth/login', ['middleware' => ['cors'],'as' => 'login', 'uses' => 'AuthController@login']);
     
         Route::post('auth/register', ['as' => 'register', 'uses' => 'RegisterController@register']);
         // Send reset password mail
@@ -57,9 +57,12 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::group([['namespace' => 'Film', 'prefix' => 'film']], function () {
-        Route::get('film', ['as' => 'film', 'uses' => 'FilmController@show']);
+        Route::get('film', ['as' => 'film', 'uses' => 'FilmController@index']);
         Route::post('film', ['as' => 'film', 'middleware' => ['admin'], 'uses' => 'FilmController@store']);
+        Route::get('film/{id}', ['as' => 'film', 'uses' => 'FilmController@show']);
+        Route::put('film/{id}', ['as' => 'film', 'uses' => 'FilmController@update']);
     });
+
 });
 
 
