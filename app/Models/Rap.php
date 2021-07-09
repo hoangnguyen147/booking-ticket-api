@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\HeThongRap;
+use App\SuatChieu;
 
 class Rap extends Model
 {
@@ -12,5 +13,9 @@ class Rap extends Model
 
     public function heThongRap() {
         return $this->belongsTo(HeThongRap::class, 'hethongrap_id', 'id');
+    }
+
+    public function suatChieu() {
+        return $this->hasMany(SuatChieu::class);
     }
 }

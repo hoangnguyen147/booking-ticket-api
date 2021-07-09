@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class FilmCollection extends ResourceCollection
+class TicketCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,12 +14,6 @@ class FilmCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection,
-            'response' => [
-                'status' => 'success',
-                'code' => 200
-            ],
-        ];
+        return parent::toArray($request);
     }
 }

@@ -29,6 +29,8 @@ class FilmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
         $film = new Film($request->except(['poster']));
@@ -39,7 +41,7 @@ class FilmController extends Controller
             $film->addMediaFromRequest('poster')->toMediaCollection('posters');
         }
 
-        return response()->json(['message' => "create film success"], 200);
+        return response()->json(new FilmResource($film), 200);
     }
 
     /**

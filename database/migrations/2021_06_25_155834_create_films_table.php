@@ -19,6 +19,7 @@ class CreateFilmsTable extends Migration
             $table->string('bidanh')->nullable();
             $table->string('trailer')->nullabel();
             $table->date('ngaykhoichieu')->nullable();
+            $table->longText('mota')->nullable();
             $table->smallInteger('danhgia')->default(rand(0,10));
             $table->timestamps();
         });

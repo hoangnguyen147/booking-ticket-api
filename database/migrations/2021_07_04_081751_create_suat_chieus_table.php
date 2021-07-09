@@ -15,7 +15,7 @@ class CreateSuatChieusTable extends Migration
     {
         Schema::create('suatchieu', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('thoigian');
+            $table->timestamp('thoigian');
             $table->unsignedBigInteger('film_id');
             $table->unsignedBigInteger('rap_id');
             $table->timestamps();

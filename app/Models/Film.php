@@ -16,11 +16,11 @@ class Film extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name', 'bidanh', 'trailer', 'ngaykhoichieu', 'danhgia',
+        'name', 'bidanh', 'trailer', 'ngaykhoichieu', 'mota', 'danhgia'
     ];
 
     public function suatChieu() {
-        return hasMany(SuatChieu::class);
+        return $this->hasMany(SuatChieu::class);
     }
 
     public function getPosterAttribute() {
