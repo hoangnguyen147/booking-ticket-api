@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\HeThongRap;
-use App\SuatChieu;
+use App\Models\SuatChieu;
 
 class Rap extends Model
 {
