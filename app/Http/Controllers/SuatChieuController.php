@@ -7,6 +7,7 @@ use App\Models\SuatChieu;
 use App\Models\Ticket;
 use App\Http\Resources\SuatChieu as SuatChieuResource;
 use App\Http\Resources\SuatChieuCollection;
+use App\Http\Resources\SuatChieuWithTicket;
 
 class SuatChieuController extends Controller
 {
@@ -26,11 +27,27 @@ class SuatChieuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function isVip($maghe) {
+        if($maghe<35) return false;
+        if($maghe % 16 > 2 && $maghe % 16 < 15) return true;
+        else return false;
+    }
     public function store(Request $request)
     {
+        $suatchieu = SuatChieu::create($request->all());
 
+        for($i=1; $i<=160; $i++) {
+            $ticket = [
+                'maghe' => $i,
+                'vip' => $this->isVip($i),
+                'suatchieu_id' => $suatchieu->id,
+            ];
+            Ticket::create($ticket);
+        }
         
-        return SuatChieu::create($request->all());
+        return $suatchieu;
+        
     }
 
     /**
@@ -43,14 +60,11 @@ class SuatChieuController extends Controller
     {
         $suatchieu = SuatChieu::findOrfail($id);
 
-        for($i=0; $i<10; $i++) {
-            for($j=0; $j<10; $j++) {
-
-            }
-        }
+        
 
         return new SuatChieuResource($suatchieu);
     }
+
 
     public function showByFilmId($filmId)
     {
@@ -68,8 +82,10 @@ class SuatChieuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
+
+    
 
     /**
      * Remove the specified resource from storage.

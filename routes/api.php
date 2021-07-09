@@ -73,7 +73,7 @@ Route::prefix('v1', ['middleware' => ['cors']])->group(function () {
         Route::get('suatchieu', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@index']);
         Route::get('suatchieu/{id}', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@show']);
         Route::post('suatchieu', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@store']);
-        Route::get('suatchieubyfilm/{id}', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@showByFilmId']);
+        Route::get('suatchieu/{id}/ticket', ['as' => 'suatchieu', 'uses' => 'TicketController@showBySuatChieuId']);
     });
 
 });

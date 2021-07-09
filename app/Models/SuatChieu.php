@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Ticket;
-use App\Film;
-use App\Rap;
+use App\Models\Ticket;
+use App\Models\Film;
+use App\Models\Rap;
 
 class SuatChieu extends Model
 {

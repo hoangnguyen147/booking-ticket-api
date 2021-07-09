@@ -15,9 +15,9 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('maghe');
-            $table->boolean('dadat');
-            $table->boolean('vip');
+            $table->integer('maghe');
+            $table->boolean('dadat')->default(false);
+            $table->boolean('vip')->default(false);
             $table->unsignedBigInteger('suatchieu_id');
             $table->timestamps();
         });
