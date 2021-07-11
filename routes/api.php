@@ -76,6 +76,8 @@ Route::prefix('v1', ['middleware' => ['cors']])->group(function () {
         Route::get('suatchieu/{id}/ticket', ['as' => 'suatchieu', 'uses' => 'TicketController@showBySuatChieuId']);
     });
 
+    Route::post('checkout/{suatchieu_id}', ['as' => 'checkout', 'uses' => 'TicketController@booking']);
+
 });
 
 

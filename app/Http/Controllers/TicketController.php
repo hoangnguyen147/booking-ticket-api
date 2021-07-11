@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ticket;
+use App\Models\SuatChieu;
 use App\Http\Resources\TicketCollection;
 
 
@@ -64,7 +65,16 @@ class TicketController extends Controller
 
     public function booking(Request $request, $suatchieu_id)
     {
+        $soldTicket = Ticket::where([['suatchieu_id', '=', $suatchieu_id], ["maghe", "=", $request->maghe]]);
+        $soldTicket->update(['dadat' => "1"]);
+        return response()->json(['message' => 'booking success']);
         
+        /* foreach((array)$request as $key => $id) {
+            $ticket = $list->where('id', $id);
+            $ticket->dadat = true;
+            $ticket->save();
+        }
+        return response()->json(['message' => 'booking success']); */
     }
 
     /**
