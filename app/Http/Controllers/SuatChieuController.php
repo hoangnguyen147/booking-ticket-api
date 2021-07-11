@@ -59,9 +59,6 @@ class SuatChieuController extends Controller
     public function show($id)
     {
         $suatchieu = SuatChieu::findOrfail($id);
-
-        
-
         return new SuatChieuResource($suatchieu);
     }
 
