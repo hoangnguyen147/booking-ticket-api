@@ -75,8 +75,10 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Film $film)
+    public function destroy($id)
     {
-        //
+        $film = Film::findOrfail($id);
+        $film->delete();
+        return response()->json(['message' => 'delete success'], 200);
     }
 }

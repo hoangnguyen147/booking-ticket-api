@@ -29,7 +29,7 @@ class SuatChieuController extends Controller
      */
 
     public function isVip($maghe) {
-        if($maghe<35) return false;
+        if($maghe<35 || $maghe>128) return false;
         if($maghe % 16 > 2 && $maghe % 16 < 15) return true;
         else return false;
     }
@@ -92,6 +92,8 @@ class SuatChieuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suatchieu = SuatChieu::findOrfail($id);
+        $suatchieu->delete();
+        return response()->json(['message' => 'delete success'], 200);
     }
 }

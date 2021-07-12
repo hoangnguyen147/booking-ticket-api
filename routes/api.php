@@ -60,8 +60,10 @@ Route::prefix('v1', ['middleware' => ['cors']])->group(function () {
         Route::get('film', ['as' => 'film', 'uses' => 'FilmController@index']);
         Route::post('film', ['as' => 'film', 'middleware' => ['admin'], 'uses' => 'FilmController@store']);
         Route::get('film/{id}', ['as' => 'film', 'uses' => 'FilmController@show']);
-        Route::put('film/{id}', ['as' => 'film', 'uses' => 'FilmController@update']);
+        Route::put('film/{id}', ['as' => 'film','middleware' => ['admin'], 'uses' => 'FilmController@update']);
         Route::get('film/{id}/suatchieu', ['as' => 'film', 'uses' => 'SuatChieuController@showByFilmId']);
+        Route::delete('film/{id}', ['as' => 'film', 'middleware' => ['admin'], 'uses' => 'FilmController@destroy']);
+
     });
 
     Route::group([['namespace' => 'Rap', 'prefix' => 'rap']], function () {
@@ -72,8 +74,10 @@ Route::prefix('v1', ['middleware' => ['cors']])->group(function () {
     Route::group([['namespace' => 'SuatChieu', 'prefix' => 'suatchieu']], function () {
         Route::get('suatchieu', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@index']);
         Route::get('suatchieu/{id}', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@show']);
-        Route::post('suatchieu', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@store']);
+        Route::post('suatchieu', ['as' => 'suatchieu','middleware' => ['admin'], 'uses' => 'SuatChieuController@store']);
         Route::get('suatchieu/{id}/ticket', ['as' => 'suatchieu', 'uses' => 'TicketController@showBySuatChieuId']);
+        Route::delete('suatchieu/{id}', ['as' => 'suatchieu', 'uses' => 'SuatChieuController@destroy']);
+
     });
 
     Route::post('checkout/{suatchieu_id}', ['as' => 'checkout', 'uses' => 'TicketController@booking']);
